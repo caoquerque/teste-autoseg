@@ -28,6 +28,9 @@ gem 'redis', '~> 4.0'
 # BDD for Ruby
 gem 'rspec', '~> 3.9'
 
+# Strategies for cleaning databases. Can be used to ensure a clean slate for testing.
+gem 'database_cleaner', '~> 1.8', '>= 1.8.5'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
