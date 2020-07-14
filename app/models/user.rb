@@ -1,14 +1,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  attr_writer :login
-  
-  has_many :to_do_lists, dependent: :destroy
-  has_many :favourite_list, through: :to_do_lists, dependent: :destroy
-  has_many :tasks, through: :to_do_lists
+
+  validates :email, presence: true, uniqueness: true
+  validates :password, length: { in: 6..20 }
+  has_many :todos, dependent: :destroy
+  has_many :favourites, through: :todo, dependent: :destroy
+  has_many :tasks, through: :todo
 
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :authentication_keys => [:login]
+         :recoverable, :rememberable, :validatables
 
 end
