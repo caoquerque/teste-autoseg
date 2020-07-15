@@ -3,12 +3,7 @@
 <ul id="todos">
   <% @todos.each do |todo| %>
     <li>
-      <% if todo.done %>
-        <i class="fa fa-check-square-o"></i>
-      <% else %>
-        <i class="fa fa-square-o"></i>
-      <% end %>
-      <%= link_to todo.description, todo_path(todo.id) %>
+      <%= link_to todo.id, todo_path(todo.id) %>
       
       <%= link_to todo_path(todo.id), method: :delete, data: { confirm: "Delete #{todo.description}?" } do %>
         <i class="fa fa-trash-o" aria-hidden="true"></i>

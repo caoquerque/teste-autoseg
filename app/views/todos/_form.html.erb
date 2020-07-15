@@ -1,16 +1,21 @@
-<%= form_for(@todo) do |f| %>
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_field :description, class: 'form-control' %>
-  </div>
-
+<%= form_for (@todo, @task) do |f| %>
   <% unless f.object.new_record? %>
     <div class="checkbox">
       <label>
         <%= f.check_box :public %> public
       </label>
     </div>
+    <%= f.association :task, include_hidden: false %>
   <% end %>
 
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>
+
+
+<%
+=begin%>
+ <%= simple_form_for [@cocktail, @dose] do |f| %> 
+<%= f.association :ingredient, input_html: { class: "beautiful-dropdown" }, include_hidden: false %> 
+<%
+=end%>
+
