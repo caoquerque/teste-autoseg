@@ -1,4 +1,4 @@
-class FavouriteList < ApplicationRecord
+class Favourite < ApplicationRecord
   belongs_to :user
   belongs_to :todo
 end

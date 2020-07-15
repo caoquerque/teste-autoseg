@@ -1,2 +1,24 @@
-<h1>Hello World</h1>
-<%= link_to  "Log-out", destroy_user_session_path, method: :delete %>
+<h1>My Todo Lists</h1>
+
+<ul id="todos">
+  <% @todos.each do |todo| %>
+    <li>
+      <% if todo.done %>
+        <i class="fa fa-check-square-o"></i>
+      <% else %>
+        <i class="fa fa-square-o"></i>
+      <% end %>
+      <%= link_to todo.description, todo_path(todo.id) %>
+      
+      <%= link_to todo_path(todo.id), method: :delete, data: { confirm: "Delete #{todo.description}?" } do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to new_todo_path do %>
+  <i class="fa fa-plus"></i> Add a new todo
+<% end %>

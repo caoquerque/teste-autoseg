@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :todos
-  resources :tasks do 
+  resources :tasks, only: [:index, :new, :create, :edit, :destroy]
+  resources :todos do 
     resources :favourites, only: [:new, :create]
   end
   root "todos#index"
