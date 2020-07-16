@@ -11,12 +11,15 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @todo = Todo.find(params[:todo_id])
   end
 
   def create
     task = Task.new(task_params)
+    todo = Todo.find(params[:todo_id])
+    task.todo = todo
     task.save
-    redirect_to tasks_path
+    redirect_to todo_path(todo)
   end
 
   def edit

@@ -34,6 +34,8 @@ class TodosController < ApplicationController
   end
 
   def show
+    @tasks = @todo.tasks
+    @task = Task.new
   end
 
   def new
@@ -42,6 +44,7 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
+    @todo.user_id = current_user.id
     @todo.save
     redirect_to todos_path
   end
@@ -66,6 +69,6 @@ class TodosController < ApplicationController
   end
 
   def todo_params
-    params.require(:todo).permit(:public)
+    params.require(:todo).permit(:public, :user_id, :description)
   end
 end

@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_150512) do
-
-  create_table "favourite", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "todo_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["todo_id"], name: "index_favourite_on_todo_id"
-    t.index ["user_id"], name: "index_favourite_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2020_07_15_223554) do
 
   create_table "favourites", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -39,19 +30,12 @@ ActiveRecord::Schema.define(version: 2020_07_15_150512) do
     t.index ["todo_id"], name: "index_tasks_on_todo_id"
   end
 
-  create_table "todo", force: :cascade do |t|
+  create_table "todos", force: :cascade do |t|
     t.boolean "public", default: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_todo_on_user_id"
-  end
-
-  create_table "todos", force: :cascade do |t|
-    t.boolean "public"
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
     t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
@@ -69,11 +53,8 @@ ActiveRecord::Schema.define(version: 2020_07_15_150512) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "favourite", "todos"
-  add_foreign_key "favourite", "users"
   add_foreign_key "favourites", "todos"
   add_foreign_key "favourites", "users"
   add_foreign_key "tasks", "todos"
-  add_foreign_key "todo", "users"
   add_foreign_key "todos", "users"
 end

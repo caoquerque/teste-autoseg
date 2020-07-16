@@ -1,11 +1,12 @@
 <h1>My Todo Lists</h1>
 
 <ul id="todos">
-  <% @todos.each do |todo| %>
+  <% @todos.each do |todo| %>  
+   <%# raise%> 
     <li>
-      <%= link_to todo.id, todo_path(todo.id) %>
+      <%= link_to todo.description, todo_path(todo.id) %>
       
-      <%= link_to todo_path(todo.id), method: :delete, data: { confirm: "Delete #{todo.description}?" } do %>
+      <%= link_to todo_path(todo.id), method: :delete, data: { confirm: "Delete #{todo.id}?" } do %>
         <i class="fa fa-trash-o" aria-hidden="true"></i>
       <% end %>
     </li>

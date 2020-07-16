@@ -1,12 +1,12 @@
-<%= form_for (@todo, @task) do |f| %>
-  <% unless f.object.new_record? %>
-    <div class="checkbox">
-      <label>
-        <%= f.check_box :public %> public
-      </label>
-    </div>
-    <%= f.association :task, include_hidden: false %>
-  <% end %>
+<%= form_for (@todo) do |f| %>
+
+  <div class="checkbox">
+    <%= f.check_box :public %> Make public list
+      <%#= f.label :public %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+
+    <%#= f.association :task, include_hidden: false %>
 
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>
