@@ -1,0 +1,13 @@
+<div class="show tasks my-4 p-4"> 
+  <h3> Tasks </h3> 
+  <%= render "tasks/index", tasks: @tasks %>
+</div>  
+
+<%= link_to edit_todo_path(@todo.id), class: 'pull-right btn btn-default' do %>
+  <i class="fa fa-pencil"></i> Edit this todo
+<% end %>
+
+<%= link_to todos_path do %>
+  <i class="fa fa-history"></i> Back to list
+  <%= link_to "new task", new_todo_task_path(@todo) %> 
+<% end %>

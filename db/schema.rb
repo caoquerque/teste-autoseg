@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_145028) do
+ActiveRecord::Schema.define(version: 2020_07_15_223554) do
+
+  create_table "favourites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "todo_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["todo_id"], name: "index_favourites_on_todo_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.text "description"
+    t.boolean "done", default: false
+    t.integer "todo_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["todo_id"], name: "index_tasks_on_todo_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.boolean "public", default: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+    t.index ["user_id"], name: "index_todos_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,8 +47,14 @@ ActiveRecord::Schema.define(version: 2020_07_10_145028) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favourites", "todos"
+  add_foreign_key "favourites", "users"
+  add_foreign_key "tasks", "todos"
+  add_foreign_key "todos", "users"
 end

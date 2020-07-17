@@ -1,0 +1,20 @@
+<h1>My Todo Lists</h1>
+
+<ul id="todos">
+  <% @todos.each do |todo| %>  
+   <%# raise%> 
+    <li>
+      <%= link_to todo.description, todo_path(todo.id) %>
+      
+      <%= link_to todo_path(todo.id), method: :delete, data: { confirm: "Delete #{todo.id}?" } do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to new_todo_path do %>
+  <i class="fa fa-plus"></i> Add a new todo
+<% end %>

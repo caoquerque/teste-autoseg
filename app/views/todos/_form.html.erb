@@ -1,0 +1,21 @@
+<%= form_for (@todo) do |f| %>
+
+  <div class="checkbox">
+    <%= f.check_box :public %> Make public list
+      <%#= f.label :public %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+
+    <%#= f.association :task, include_hidden: false %>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
+
+
+<%
+=begin%>
+ <%= simple_form_for [@cocktail, @dose] do |f| %> 
+<%= f.association :ingredient, input_html: { class: "beautiful-dropdown" }, include_hidden: false %> 
+<%
+=end%>
+

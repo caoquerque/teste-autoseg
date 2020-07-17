@@ -1,0 +1,16 @@
+<%= link_to edit_task_path(@task.id), class: 'pull-right btn btn-default' do %>
+  <i class="fa fa-pencil"></i> Edit this task
+<% end %>
+
+<h1><%= @task.description %></h1>
+
+<% if @task.done %>
+  <i class="fa fa-check-square-o"></i> This task is done
+<% else %>
+  <i class="fa fa-square-o"></i> This task is not done yet
+<% end %>
+
+<hr>
+<%= link_to @task.todo do %>
+  <i class="fa fa-history"></i> Back to list
+<% end %>
